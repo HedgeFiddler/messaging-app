@@ -1,6 +1,7 @@
 package MessagingApp;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class User {
     private String email;
@@ -43,5 +44,24 @@ public class User {
 
     public void setLastLogin(LocalDateTime lastLogin) {
         this.lastLogin = lastLogin;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(lastLogin, user.lastLogin);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(email, name, age, password, lastLogin);
     }
 }
