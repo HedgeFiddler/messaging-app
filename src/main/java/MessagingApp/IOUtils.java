@@ -104,7 +104,7 @@ public class IOUtils {
         return GROUP_CHATS_FOLDER;
     }
 
-    public String[] readUserFile(User user) throws IOException {
+    public synchronized String[] readUserFile(User user) throws IOException {
         File file = new File(USER_FOLDER_PATH + user.getEmail() + ".txt");
         List<String> readLines = Files.readAllLines(file.toPath());
         return readLines.get(0).split(" ");
@@ -119,7 +119,7 @@ public class IOUtils {
         writer.close();
     }
 
-    private LocalDateTime getUserLastUpdate(User user) throws IOException {
+    private synchronized LocalDateTime getUserLastUpdate(User user) throws IOException {
 
         return stringToLdt(readUserFile(user)[4]);
 
@@ -171,17 +171,17 @@ public class IOUtils {
         LocalDateTime timestamp = LocalDateTime.now();
         if (fileExists(f)) {
             BufferedWriter out = new BufferedWriter(new FileWriter(f, true));
-            out.write(timestamp + " " + chatName + "  " + user.getName() + ": " + message + "\n");
+            out.write(timestamp + " " + "in " +  chatName + "  " + user.getName() + ": " + message + "\n");
             out.close();
         } else {
             Writer writer = new BufferedWriter(new FileWriter(f));
-            writer.write(timestamp + " " + chatName + "  " + user.getName() + ": " + message + "\n");
+            writer.write(timestamp + " " + "in " + chatName + "  " + user.getName() + ": " + message + "\n");
             writer.close();
         }
 
     }
 
-    public void checkGroupChatFileForNewMessages(User user, Path path) throws IOException {
+    public synchronized void checkGroupChatFileForNewMessages(User user, Path path) throws IOException {
 
             List<String> lines = null;
             try {
@@ -191,66 +191,70 @@ public class IOUtils {
             }
             for (String line : lines) {
                 String[] lineSplit = line.split(" ");
-                if (stringToLdt(lineSplit[0]).isAfter(getUserLastUpdate(user)) && !(user.getName().equals(lineSplit[1] + ":"))) {
+                if (stringToLdt(lineSplit[0]).isAfter(getUserLastUpdate(user))) {
                     writeMessage(line + "\n");
                 }
 
-                updateGroupChatTimestamp(path.toFile().getName(), user);
             }
 
+        updateGroupChatTimestamp(user);
     }
 
-    public LocalDateTime getTimeStampForChat(String chatName, User user) throws IOException {
+//    public LocalDateTime getTimeStampForChat(String chatName, User user) throws IOException {
+//        File f = new File(GROUP_CHATS_TIMESTAMPS + user.getEmail() + ".txt");
+//        List<String> lines = Files.readAllLines(f.toPath());
+//        for (String line : lines) {
+//            if (line.split(" ")[0].equals(chatName)) {
+//                return stringToLdt(line.split(" ")[1]);
+//            }
+//        }
+//        return LocalDateTime.now();
+//    }
+
+    public synchronized void updateGroupChatTimestamp(User user) throws IOException {
         File f = new File(GROUP_CHATS_TIMESTAMPS + user.getEmail() + ".txt");
-        List<String> lines = Files.readAllLines(f.toPath());
-        for (String line : lines) {
-            if (line.split(" ")[0].equals(chatName)) {
-                return stringToLdt(line.split(" ")[1]);
-            }
-        }
-        return LocalDateTime.now();
+
+        Writer writer = new BufferedWriter(new FileWriter(f));
+        writer.write(LocalDateTime.now().toString());
+        writer.close();
+
+//        if (fileExists(f)) {
+//            List<String> lines = Files.readAllLines(f.toPath());
+//            for (String line : lines) {
+//                Writer writer = new BufferedWriter(new FileWriter(f));
+//                if (line.split(" ")[0].equals(chatName)) {
+//                    writer.write(line.split(" ")[0] + LocalDateTime.now().toString());
+//                } else {
+//                    writer.write(line);
+//                }
+//            }
+//
+//        }
     }
 
-    public synchronized void updateGroupChatTimestamp(String chatName, User user) throws IOException {
-        File f = new File(GROUP_CHATS_TIMESTAMPS + user.getEmail() + ".txt");
+//    public synchronized void createGroupChatTimestamp(String chatName, User user) throws IOException {
+//        File f = new File(GROUP_CHATS_TIMESTAMPS + user.getEmail() + "txt");
+//        if (fileExists(f) && !(isChatTimeStampPresent(chatName, user))) {
+//            Writer writer = new BufferedWriter(new FileWriter(f, true));
+//            writer.append(chatName + " " + LocalDateTime.now().toString());
+//            writer.close();
+//
+//        }
+//
+//    }
 
-        if (fileExists(f)) {
-            List<String> lines = Files.readAllLines(f.toPath());
-            for (String line : lines) {
-                Writer writer = new BufferedWriter(new FileWriter(f));
-                if (line.split(" ")[0].equals(chatName)) {
-                    writer.write(line.split(" ")[0] + LocalDateTime.now().toString());
-                } else {
-                    writer.write(line);
-                }
-            }
-
-        }
-    }
-
-    public synchronized void createGroupChatTimestamp(String chatName, User user) throws IOException {
-        File f = new File(GROUP_CHATS_TIMESTAMPS + user.getEmail() + "txt");
-        if (fileExists(f) && !(isChatTimeStampPresent(chatName, user))) {
-            Writer writer = new BufferedWriter(new FileWriter(f, true));
-            writer.append(chatName + " " + LocalDateTime.now().toString());
-            writer.close();
-
-        }
-
-    }
-
-    public boolean isChatTimeStampPresent(String chatName, User user) throws IOException {
-        File f = new File(GROUP_CHATS_TIMESTAMPS + user.getEmail() + ".txt");
-        if (fileExists(f)) {
-            List<String> lines = Files.readAllLines(f.toPath());
-            for (String line : lines) {
-                if (line.split(" ")[0].equals(chatName)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+//    public boolean isChatTimeStampPresent(String chatName, User user) throws IOException {
+//        File f = new File(GROUP_CHATS_TIMESTAMPS + user.getEmail() + ".txt");
+//        if (fileExists(f)) {
+//            List<String> lines = Files.readAllLines(f.toPath());
+//            for (String line : lines) {
+//                if (line.split(" ")[0].equals(chatName)) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+//    }
 
 
 

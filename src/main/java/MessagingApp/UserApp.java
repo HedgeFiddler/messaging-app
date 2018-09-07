@@ -201,11 +201,33 @@ public class UserApp {
     }
 
     public void enterGroupChat(User user, String chatName) throws IOException {
-        ioUtils.createGroupChatTimestamp(chatName, user);
+        ioUtils.updateGroupChatTimestamp(user);
         boolean groupLogin = true;
         ioUtils.writeMessage("Welcome to the " + chatName + "chatroom");
         ioUtils.writeMessage("Type in your messages and they'll get to everyone in this chatroom");
         ioUtils.writeMessage("To exit the chatroom type \"exit\"");
+
+        Thread groupChecker = new Thread(()-> {
+
+         while(true){
+             try {
+                 Thread.sleep(1000);
+             } catch (InterruptedException e) {
+                 ioUtils.writeMessage(e.getMessage());
+             }
+
+             try {
+                 checkGroupChatsForNewMessages(user);
+             } catch (IOException e) {
+                 ioUtils.writeMessage(e.getMessage());
+             }
+
+         }
+
+
+        });
+
+        groupChecker.start();
         while(groupLogin){
             String input = ioUtils.readNext();
             if (input.equals("exit")){
@@ -215,7 +237,7 @@ public class UserApp {
                 ioUtils.writeToGroupChat(chatName, user, input);
             }
         }
-        ioUtils.writeMessage("Thanks for using the group chat feature");
+        ioUtils.writeMessage("Thanks for beta testing the group chat feature");
 
 
     }
