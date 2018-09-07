@@ -8,14 +8,14 @@ public class User {
     private String name;
     private int age;
     private String password;
-    private LocalDateTime lastLogin;
+    private LocalDateTime lastUpdate;
 
     public User(String email, String name, int age, String password) {
         this.email = email;
         this.name = name;
         this.age = age;
         this.password = password;
-        this.lastLogin = lastLogin;
+        this.lastUpdate = null;
     }
 
     public String getEmail() {
@@ -38,12 +38,12 @@ public class User {
     }
 
 
-    public LocalDateTime getLastLogin() {
-        return lastLogin;
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLastLogin(LocalDateTime lastLogin) {
-        this.lastLogin = lastLogin;
+    public void setLastUpdate(LocalDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
 
@@ -56,12 +56,18 @@ public class User {
                 Objects.equals(email, user.email) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(password, user.password) &&
-                Objects.equals(lastLogin, user.lastLogin);
+                Objects.equals(lastUpdate, user.lastUpdate);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(email, name, age, password, lastLogin);
+        return Objects.hash(email, name, age, password, lastUpdate);
+    }
+
+    @Override
+    public String toString() {
+        return
+                email + " " + name + " " + age + " " + password + " " + lastUpdate ;
     }
 }
