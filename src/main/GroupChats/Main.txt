@@ -35,3 +35,26 @@
 2018-09-07T21:16:19.596 in Main  shosho: hello
 2018-09-07T21:21:18.559 in Main  blabla: kekeke
 2018-09-07T21:25:07.257 in Main  blabla: heheie
+2018-09-10T20:38:44.487 in Main  shosho: Hello!
+2018-09-10T20:39:01.188 in Main  blabla: How are you ?
+2018-09-10T20:39:14.440 in Main  shosho: I'm fine. You?
+2018-09-10T20:40:24.737 in Main  e: third entry incoming
+2018-09-10T20:40:36.771 in Main  e: third entry second message
+2018-09-10T20:41:04.134 in Main  blabla: Any plans, e?
+2018-09-10T20:41:22.344 in Main  shosho: now I didnt receive it
+2018-09-10T20:41:38.860 in Main  e: but I received yours
+2018-09-10T20:46:09.675 in Main  blabla: does it work now_
+2018-09-10T20:50:15.063 in Main  blabla: awjfijawfja
+2018-09-10T20:50:21.512 in Main  blabla: lawjfawf
+2018-09-10T20:50:31.373 in Main  e: korraaowjfoawk
+2018-09-10T20:57:03.801 in Main  shosho: dontkefkaowk
+2018-09-10T20:57:08.568 in Main  blabla: awjwajofa
+2018-09-10T21:06:47.208 in Main  blabla: kollkollkoll
+2018-09-10T21:07:41.079 in Main  blabla: jolljollajolla
+2018-09-10T21:10:10.153 in Main  e: lgsoglksgs
+2018-09-10T21:19:49.004 in Main  e: hello, trying out this new file setup
+2018-09-10T21:20:00.964 in Main  shosho: hello
+2018-09-10T21:20:05.635 in Main  shosho: Im here as well
+2018-09-10T21:20:24.571 in Main  blabla: youre all douches, whatsup?
+2018-09-10T21:21:17.020 in Main  shosho: this is a good chat program now, hooray
+2018-09-10T21:21:56.663 in Main  shosho: it will crash eventually, woop!

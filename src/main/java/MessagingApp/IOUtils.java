@@ -14,10 +14,13 @@ public class IOUtils {
     private static final String GROUP_CHATS_FOLDER = "C://Users//Sander//IdeaProjects//messaging-app//src//main//GroupChats/";
     private static final String GROUP_CHATS_TIMESTAMPS = "C://Users//Sander//IdeaProjects//messaging-app//src//main//GroupChatTimestamps/";
 
+    private volatile List<String> lines;
+
     Scanner scanner;
 
     public IOUtils() {
         this.scanner = new Scanner(System.in);
+
     }
 
     public IOUtils(Scanner scanner) {
@@ -144,9 +147,9 @@ public class IOUtils {
     }
 
     public synchronized void checkChatFileForNewMessages(Path path, User user) throws IOException {
-
+            lines = null;
         if (path.toFile().getName().contains(user.getEmail())) {
-            List<String> lines = null;
+
             try {
                 lines = Files.readAllLines(path);
             } catch (IOException e) {
@@ -183,7 +186,7 @@ public class IOUtils {
 
     public synchronized void checkGroupChatFileForNewMessages(User user, Path path) throws IOException {
 
-            List<String> lines = null;
+            lines = null;
             try {
                 lines = Files.readAllLines(path);
             } catch (IOException e) {

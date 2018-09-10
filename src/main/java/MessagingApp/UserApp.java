@@ -227,6 +227,7 @@ public class UserApp {
 
         });
 
+
         groupChecker.start();
         while(groupLogin){
             String input = ioUtils.readNext();
