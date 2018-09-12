@@ -146,20 +146,23 @@ public class UserApp {
                     ioUtils.appendMessageToChatFile(targetUser, sendingUser, message, sendingUser);
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
-                    return;
+
                 }
             } else {
                 try {
                     ioUtils.appendMessageToChatFile(sendingUser, targetUser, message, sendingUser);
-                    return;
+
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
             }
 
+        } else {
+
+            throw new NoSuchUserException("No such email in the chat program");
+
         }
 
-        throw new NoSuchUserException("No such email in the chat program");
 
     }
 
@@ -203,7 +206,7 @@ public class UserApp {
     public void enterGroupChat(User user, String chatName) throws IOException {
         ioUtils.updateGroupChatTimestamp(user);
         boolean groupLogin = true;
-        ioUtils.writeMessage("Welcome to the " + chatName + "chatroom");
+        ioUtils.writeMessage("Welcome to the " + chatName + " chatroom");
         ioUtils.writeMessage("Type in your messages and they'll get to everyone in this chatroom");
         ioUtils.writeMessage("To exit the chatroom type \"exit\"");
 

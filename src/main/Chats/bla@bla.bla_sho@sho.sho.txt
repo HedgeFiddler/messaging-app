@@ -1,12 +1,5 @@
-2018-09-05T19:42:17.498  blabla: HelloTest10
-2018-09-05T19:44:42.852  blabla: whats my name?
-2018-09-05T19:45:52.062  shosho: Only Your should see this!
-2018-09-05T19:50:35.770  blabla: You're a weirdo, dude
-2018-09-05T19:55:18.984  blabla: This is a shitty app
-2018-09-05T19:57:47.402  blabla: sho
-2018-09-05T21:00:59.616  blabla: This is a MultiMessageTest
-2018-09-05T21:04:20.924  blabla: Second MultiMessageTest
-2018-09-05T21:05:55.302  blabla: Third multimessage test
-2018-09-07T19:23:23.520  blabla: Hi, this is bla, howyoudoin.
-2018-09-07T19:24:54.586  shosho: This is sho, hihi
-2018-09-07T19:25:42.835  blabla: Once more from Bla, hi
+2018-09-12T18:44:56.285<>blabla:<>Hello, this is a new test, will need a file
+2018-09-12T18:48:02.436<>blabla:<>hello again. This should not be shown to me
+2018-09-12T18:48:27.608<>shosho:<>It wasnt! Guess it works now!!
+2018-09-12T18:50:27.597<>blabla:<>Now it's working!!
+2018-09-12T18:56:01.150<>shosho:<>Shalalla, I guess this works now

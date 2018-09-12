@@ -1,60 +1,6 @@
-2018-09-07T20:49:33.626 in Main  blabla: Hello
-2018-09-07T20:49:43.894 in Main  blabla: What's up everyone?
-2018-09-07T20:50:04.176 in Main  blabla: THIS ISNT WORKING!
-2018-09-07T20:53:57.018 in Main  shosho: Hello, I'm here naoo...
-2018-09-07T20:54:05.401 in Main  blabla: whats up dawg_
-2018-09-07T20:54:27.456 in Main  shosho: Nothing much, you?
-2018-09-07T20:54:53.435 in Main  e: wazaaaaaaaa
-2018-09-07T20:55:17.326 in Main  e: 3
-2018-09-07T20:55:19.453 in Main  e: awkjffawj
-2018-09-07T20:57:45.702 in Main  e: Hello
-2018-09-07T20:57:55.917 in Main  shosho: Hi
-2018-09-07T20:58:07.252 in Main  shosho: Hello
-2018-09-07T20:58:14.386 in Main  e: Hihi
-2018-09-07T20:59:16.538 in Main  q: Hello
-2018-09-07T21:00:53.912 in Main  blabla: Hello
-2018-09-07T21:01:02.925 in Main  blabla: Whats up here?
-2018-09-07T21:01:30.964 in Main  shosho: Im here too
-2018-09-07T21:01:46.651 in Main  blabla: The thread is not working for me
-2018-09-07T21:02:08.851 in Main  blabla: I can write to the chat, but nothing else is working
-2018-09-07T21:04:09.890 in Main  q: kjsk
-2018-09-07T21:04:15.465 in Main  shosho: afaafw
-2018-09-07T21:04:19.234 in Main  blabla: awfawawfaf
-2018-09-07T21:07:03.475 in Main  e: HEllo guise
-2018-09-07T21:07:22.342 in Main  blabla: Hello
-2018-09-07T21:07:27.011 in Main  blabla: Im in the main chatroom
-2018-09-07T21:07:43.076 in Main  blabla: Im in main
-2018-09-07T21:07:47.802 in Main  blabla: what happened now_
-2018-09-07T21:08:06.450 in Main  e: dunno, Im getting all the messages
-2018-09-07T21:08:17.999 in Main  blabla: Im not getting all the messages
-2018-09-07T21:09:23.410 in Main  e: Third user
-2018-09-07T21:13:46.642 in Main  blabla: First user responding
-2018-09-07T21:14:07.593 in Main  blabla: Why isnt it appearing for me
-2018-09-07T21:15:27.561 in Main  e: one more message from the third
-2018-09-07T21:15:53.462 in Main  blabla: but now?
-2018-09-07T21:16:19.596 in Main  shosho: hello
-2018-09-07T21:21:18.559 in Main  blabla: kekeke
-2018-09-07T21:25:07.257 in Main  blabla: heheie
-2018-09-10T20:38:44.487 in Main  shosho: Hello!
-2018-09-10T20:39:01.188 in Main  blabla: How are you ?
-2018-09-10T20:39:14.440 in Main  shosho: I'm fine. You?
-2018-09-10T20:40:24.737 in Main  e: third entry incoming
-2018-09-10T20:40:36.771 in Main  e: third entry second message
-2018-09-10T20:41:04.134 in Main  blabla: Any plans, e?
-2018-09-10T20:41:22.344 in Main  shosho: now I didnt receive it
-2018-09-10T20:41:38.860 in Main  e: but I received yours
-2018-09-10T20:46:09.675 in Main  blabla: does it work now_
-2018-09-10T20:50:15.063 in Main  blabla: awjfijawfja
-2018-09-10T20:50:21.512 in Main  blabla: lawjfawf
-2018-09-10T20:50:31.373 in Main  e: korraaowjfoawk
-2018-09-10T20:57:03.801 in Main  shosho: dontkefkaowk
-2018-09-10T20:57:08.568 in Main  blabla: awjwajofa
-2018-09-10T21:06:47.208 in Main  blabla: kollkollkoll
-2018-09-10T21:07:41.079 in Main  blabla: jolljollajolla
-2018-09-10T21:10:10.153 in Main  e: lgsoglksgs
-2018-09-10T21:19:49.004 in Main  e: hello, trying out this new file setup
-2018-09-10T21:20:00.964 in Main  shosho: hello
-2018-09-10T21:20:05.635 in Main  shosho: Im here as well
-2018-09-10T21:20:24.571 in Main  blabla: youre all douches, whatsup?
-2018-09-10T21:21:17.020 in Main  shosho: this is a good chat program now, hooray
-2018-09-10T21:21:56.663 in Main  shosho: it will crash eventually, woop!
+2018-09-12T19:01:55.940<>in Main<>blabla:<>Hello everyone!
+2018-09-12T19:21:18.726<>in Main<>q:<>Hello
+2018-09-12T19:21:27.226<>in Main<>blabla:<>Hi, q
+2018-09-12T19:21:54.775<>in Main<>q:<>Whats up guys?
+2018-09-12T19:22:05.203<>in Main<>blabla:<>Nothing much, whats up with you?
+2018-09-12T19:22:30.951<>in Main<>blabla:<>cya, gon go now

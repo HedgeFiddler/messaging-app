@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,6 +16,7 @@ public class IOUtils {
     private static final String GROUP_CHATS_TIMESTAMPS = "C://Users//Sander//IdeaProjects//messaging-app//src//main//GroupChatTimestamps/";
 
     private volatile List<String> lines;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm:ss");
 
     Scanner scanner;
 
@@ -50,13 +52,12 @@ public class IOUtils {
         return fileExists(user);
     }
 
-    public String generateChatFilename(String firstUser, String secondUser) {
+    public String getChatFilename(String firstUser, String secondUser) {
         if (firstUser.charAt(0) <= secondUser.charAt(0)) {
             return firstUser + "_" + secondUser;
         } else {
             return secondUser + "_" + firstUser;
         }
-
     }
 
     public void appendMessageToChatFile(String firstUser, String secondUser, String message, String sender) throws IOException {
@@ -65,11 +66,11 @@ public class IOUtils {
 
         if (fileExists(a)) {
             BufferedWriter out = new BufferedWriter(new FileWriter(a, true));
-            out.write(timestamp + "  " + getUserFromEmail(sender).getName() + ": " + message + "\n");
+            out.write(timestamp + "<>" + getUserFromEmail(sender).getName() + ":<>" + message + "\n");
             out.close();
         } else {
             Writer writer = new BufferedWriter(new FileWriter(a));
-            writer.write(timestamp + "  " + getUserFromEmail(sender).getName() + ": " + message + "\n");
+            writer.write(timestamp + "<>" + getUserFromEmail(sender).getName() + ":<>" + message + "\n");
             writer.close();
         }
 
@@ -146,8 +147,8 @@ public class IOUtils {
 
     }
 
-    public synchronized void checkChatFileForNewMessages(Path path, User user) throws IOException {
-            lines = null;
+    public void checkChatFileForNewMessages(Path path, User user) throws IOException {
+        lines = null;
         if (path.toFile().getName().contains(user.getEmail())) {
 
             try {
@@ -155,18 +156,18 @@ public class IOUtils {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
             for (String line : lines) {
-                String[] lineSplit = line.split(" ");
-                if (stringToLdt(lineSplit[0]).isAfter(getUserLastUpdate(user)) && !(user.getName().equals(lineSplit[1] + ":"))) {
-                    writeMessage(line + "\n");
+                String[] lineSplit = line.split("<>");
+                if (stringToLdt(lineSplit[0]).isAfter(getUserLastUpdate(user)) && !((user.getName() + ":").equals(lineSplit[1]))) {
+                    String formattedTimestamp = stringToLdt(lineSplit[0]).format(formatter);
+                    writeMessage(formattedTimestamp + " " + lineSplit[1] + " " + lineSplit[2] + "\n");
                 }
 
 
             }
             updateUserLastUpdate(user);
         }
-
-
     }
 
     public synchronized void writeToGroupChat(String chatName, User user, String message) throws IOException {
@@ -174,33 +175,38 @@ public class IOUtils {
         LocalDateTime timestamp = LocalDateTime.now();
         if (fileExists(f)) {
             BufferedWriter out = new BufferedWriter(new FileWriter(f, true));
-            out.write(timestamp + " " + "in " +  chatName + "  " + user.getName() + ": " + message + "\n");
+            out.write(timestamp + "<>" + "in " + chatName + "<>" + user.getName() + ":<>" + message + "\n");
             out.close();
         } else {
             Writer writer = new BufferedWriter(new FileWriter(f));
-            writer.write(timestamp + " " + "in " + chatName + "  " + user.getName() + ": " + message + "\n");
+            writer.write(timestamp + "<>" + "in " + chatName + "<>" + user.getName() + ":<>" + message + "\n");
             writer.close();
         }
 
     }
 
-    public synchronized void checkGroupChatFileForNewMessages(User user, Path path) throws IOException {
+    public void checkGroupChatFileForNewMessages(User user, Path path) throws IOException {
 
-            lines = null;
-            try {
-                lines = Files.readAllLines(path);
-            } catch (IOException e) {
-                e.printStackTrace();
+        lines = null;
+        try {
+            lines = Files.readAllLines(path);
+        } catch (IOException e) {
+            writeMessage(e.getMessage());
+        }
+        for (String line : lines) {
+            String[] lineSplit = line.split("<>");
+            if (stringToLdt(lineSplit[0]).isAfter(getUserGroupChatsLastUpdate(user))) {
+                String formattedTimestamp = stringToLdt(lineSplit[0]).format(formatter);
+                writeMessage(formattedTimestamp + " " + lineSplit[1] + " " + lineSplit[2] + " " + lineSplit[3] + "\n");
             }
-            for (String line : lines) {
-                String[] lineSplit = line.split(" ");
-                if (stringToLdt(lineSplit[0]).isAfter(getUserLastUpdate(user))) {
-                    writeMessage(line + "\n");
-                }
 
-            }
-
+        }
         updateGroupChatTimestamp(user);
+    }
+
+    public LocalDateTime getUserGroupChatsLastUpdate(User user) throws IOException {
+        File f = new File(GROUP_CHATS_TIMESTAMPS + user.getEmail() + ".txt");
+        return stringToLdt(Files.readAllLines(f.toPath()).get(0).split("<>")[0]);
     }
 
 //    public LocalDateTime getTimeStampForChat(String chatName, User user) throws IOException {
@@ -258,7 +264,6 @@ public class IOUtils {
 //        }
 //        return false;
 //    }
-
 
 
 }
